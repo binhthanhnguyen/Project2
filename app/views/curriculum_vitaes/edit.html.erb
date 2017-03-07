@@ -1,0 +1,11 @@
+<h1>Update Curriculum Vitae</h1>
+<%= form_for(@curriculum_vitae, url: user_curriculum_vitae_path(current_user, @curriculum_vitae)) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+  	<%= f.label :title %>
+  	<%= f.text_field :title %>
+  	<%= f.label :content %>
+    <%= f.text_area :content, placeholder: "Content..." %>
+  </div>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>

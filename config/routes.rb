@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  root 'static_pages#home'
+  # get 'curriculum_vitaes/new'
+
+  # get 'curriculum_vitaes/show'
+
+  # get 'curriculum_vitaes/edit'
+
   get 'sessions/new'
 
-  root 'static_pages#home'
+
   get 'static_pages/home'
 
   get  '/help',    to: 'static_pages#help'
@@ -10,8 +17,9 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  resources :users
-
+  resources :users do
+     resources :curriculum_vitaes
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,79 @@
+<h1>Curriculum Vitae</h1>
+
+<div class="row">
+	<aside class="col-md-2">
+	    <section class="user_info">
+	        <%= gravatar_for @user %>
+	    </section>
+  	</aside>
+  	<div class="col-md-10">
+  		<h2><%= @user.name %></h2>
+  		<hr>
+  		<div class="row">
+	  		<div class="col-md-6">
+	  			Email: <%= @user.email %>
+	  			<br>
+	  			Address: Hanoi University of Science and Technology
+	  		</div>
+	  		<div class="col-md-6">
+	  			Phone: 0123456789
+	  		</div>
+  		</div>	
+  	</div>
+</div>
+<br>
+<% if !@user.curriculum_vitae.nil? %>
+	<div class="row">
+		<aside class= "col-md-2">
+			<h2 style="text-decoration: underline; color: red">Objective</h2>
+		</aside>
+		<div class="col-md-10">
+			<h3><%= @curriculum_vitae.title %></h3>
+	
+		</div>
+	</div>
+
+	<div class="row">
+		<aside class= "col-md-2">
+			<h2 style="text-decoration: underline; color: red">Work experience</h2>
+		</aside>
+		<div class="col-md-10">
+			<h3><%= @curriculum_vitae.content %></h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<aside class= "col-md-2">
+			<h2 style="text-decoration: underline; color: red">Qualifications</h2>
+			
+		</aside>
+		<div class="col-md-10">
+			<h3><%= @curriculum_vitae.title %></h3>
+			<h3><%= @curriculum_vitae.content %></h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<aside class= "col-md-2">
+			<h2 style="text-decoration: underline; color: red">Education</h2>
+		</aside>
+		<div class="col-md-10">
+			<h3><%= @curriculum_vitae.title %></h3>
+			<h3><%= @curriculum_vitae.content %></h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<aside class= "col-md-2">
+			<h2 style="text-decoration: underline; color: red">Skills</h2>
+		</aside>
+		<div class="col-md-10">
+			<h3><%= @curriculum_vitae.title %></h3>
+			<h3><%= @curriculum_vitae.content %></h3>
+		</div>
+	</div>
+	<%= link_to "Edit Curriculum Vitae!", edit_user_curriculum_vitae_path(current_user, current_user.curriculum_vitae), class: "btn btn-primary" %>
+	<% else %>
+		<%= link_to "Create Curriculum Vitae!", new_user_curriculum_vitae_path(current_user), class: "btn btn-primary" %>
+<% end %>
+
