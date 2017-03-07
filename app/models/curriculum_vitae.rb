@@ -1,4 +1,4 @@
-class CirriculumVitae < ApplicationRecord
+class CurriculumVitae < ApplicationRecord
   belongs_to :user
   validates :user_id, presence: true
 end
