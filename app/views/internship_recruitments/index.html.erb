@@ -1,0 +1,14 @@
+<% provide :title, "Internship Recruitments" %>
+
+<h1>Internship Recruitments</h1>
+<br>
+<% if @internship_recruitments.any? %>
+	<ol class="internship-recruitments">
+		<%= render @internship_recruitments %>
+	</ol>
+<% end %>
+
+<%= will_paginate %>
+
+
+
