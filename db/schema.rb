@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306105516) do
+ActiveRecord::Schema.define(version: 20170307151452) do
 
   create_table "curriculum_vitaes", force: :cascade do |t|
     t.string   "title"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20170306105516) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_curriculum_vitaes_on_user_id"
+  end
+
+  create_table "internship_recruitments", force: :cascade do |t|
+    t.text     "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "status"
+    t.index ["user_id"], name: "index_internship_recruitments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
