@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
+  devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  root to: 'static_pages#home'
   # get 'curriculum_vitaes/new'
 
   # get 'curriculum_vitaes/show'
 
   # get 'curriculum_vitaes/edit'
 
-  get 'sessions/new'
+  # get 'sessions/new'
 
 
-  get 'static_pages/home'
+  # get 'static_pages/home'
 
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
 
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  # get    '/login',   to: 'sessions#new'
+  # post   '/login',   to: 'sessions#create'
+  # delete '/logout',  to: 'sessions#destroy'
   resources :users do
      resources :curriculum_vitaes
   end
