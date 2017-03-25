@@ -3,4 +3,6 @@
 <h1><%= @internship_recruitment.title %></h1>
 <h2>Content: <%= @internship_recruitment.content %></h2>
 
-<%= link_to "Edit", edit_internship_recruitment_path(@internship_recruitment), class: "btn btn-primary" %>
+<% if can? :update, @internship_recruitment %>
+	<%= link_to "Edit", edit_internship_recruitment_path(@internship_recruitment), class: "btn btn-primary" %>
+<% end %>

@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  load_and_authorize_resource
+  include Devise::Controllers::Helpers
+  # before_filter :authenticate_user!
+  # protect_from_forgery prepend: true
+  before_action :authenticate_user!, except: [ :index]
+
+
+  # before_action :correct_user,   only: [:edit, :update]
+
 
 
   def show
@@ -29,7 +36,7 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :role)
     end
 
     # Confirms a logged-in user.
