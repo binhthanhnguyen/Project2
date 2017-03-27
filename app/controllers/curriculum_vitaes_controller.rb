@@ -44,7 +44,7 @@ class CurriculumVitaesController < ApplicationController
 
   private 
   	def curriculum_vitae_params
-  		params.require(:curriculum_vitae).permit(:title, :content)
+  		params.require(:curriculum_vitae).permit(:objective, :work_experience, :qualifications, :education, :skills)
   	end
 
 end

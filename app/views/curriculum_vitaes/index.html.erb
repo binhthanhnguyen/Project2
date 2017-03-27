@@ -28,7 +28,7 @@
 			<h2 style="text-decoration: underline; color: red">Objective</h2>
 		</aside>
 		<div class="col-md-10">
-			<h3><%= @curriculum_vitae.title %></h3>
+			<h3><%= @curriculum_vitae.objective %></h3>
 	
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 			<h2 style="text-decoration: underline; color: red">Work experience</h2>
 		</aside>
 		<div class="col-md-10">
-			<h3><%= @curriculum_vitae.content %></h3>
+			<h3><%= @curriculum_vitae.work_experience %></h3>
 		</div>
 	</div>
 
@@ -48,8 +48,7 @@
 			
 		</aside>
 		<div class="col-md-10">
-			<h3><%= @curriculum_vitae.title %></h3>
-			<h3><%= @curriculum_vitae.content %></h3>
+			<h3><%= @curriculum_vitae.qualifications %></h3>
 		</div>
 	</div>
 
@@ -58,8 +57,7 @@
 			<h2 style="text-decoration: underline; color: red">Education</h2>
 		</aside>
 		<div class="col-md-10">
-			<h3><%= @curriculum_vitae.title %></h3>
-			<h3><%= @curriculum_vitae.content %></h3>
+			<h3><%= @curriculum_vitae.education %></h3>
 		</div>
 	</div>
 
@@ -68,8 +66,7 @@
 			<h2 style="text-decoration: underline; color: red">Skills</h2>
 		</aside>
 		<div class="col-md-10">
-			<h3><%= @curriculum_vitae.title %></h3>
-			<h3><%= @curriculum_vitae.content %></h3>
+			<h3><%= @curriculum_vitae.skills %></h3>
 		</div>
 	</div>
 	<%= link_to "Edit Curriculum Vitae!", edit_user_curriculum_vitae_path(current_user, current_user.curriculum_vitae), class: "btn btn-primary" %>
