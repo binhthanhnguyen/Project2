@@ -13,7 +13,6 @@ class Ability
 
     if user.role? :student
         can :read, :all
-
     end
     # can :access, :rails_admin
 

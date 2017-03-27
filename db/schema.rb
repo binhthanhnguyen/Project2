@@ -14,13 +14,13 @@ ActiveRecord::Schema.define(version: 20170322164345) do
 
   create_table "curriculum_vitaes", force: :cascade do |t|
     t.text     "objective"
-    t.text     "work_eperience"
+    t.text     "work_experience"
     t.text     "qualifications"
     t.text     "education"
     t.text     "skills"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["user_id"], name: "index_curriculum_vitaes_on_user_id"
   end
 
