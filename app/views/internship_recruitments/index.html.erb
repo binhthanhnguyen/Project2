@@ -1,6 +1,12 @@
 <% provide :title, "Internship Recruitments" %>
 
 <h1>Internship Recruitments</h1>
+<div class="nav pull-right">
+<% if can? :create, InternshipRecruitment %>
+	<%= link_to "Create Internship Recruitment", new_internship_recruitment_path, class: "btn btn-primary" %>
+<% end %>
+</div>
+<br>
 <br>
 <% if @internship_recruitments.any? %>
 	<ol class="internship-recruitments">

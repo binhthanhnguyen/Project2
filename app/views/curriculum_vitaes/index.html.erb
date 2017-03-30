@@ -70,7 +70,7 @@
 		</div>
 	</div>
 	<%= link_to "Edit Curriculum Vitae!", edit_user_curriculum_vitae_path(current_user, current_user.curriculum_vitae), class: "btn btn-primary" %>
-	<% else %>
+	<% elsif can? :create, CurriculumVitae%>
 		<%= link_to "Create Curriculum Vitae!", new_user_curriculum_vitae_path(current_user), class: "btn btn-primary" %>
 <% end %>
 
