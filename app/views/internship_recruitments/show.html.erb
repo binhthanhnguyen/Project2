@@ -1,8 +1,30 @@
 <% provide :title, @internship_recruitment.title %>
 
-<h1><%= @internship_recruitment.title %></h1>
-<h2>Content: <%= @internship_recruitment.content %></h2>
+
+<div class= "row">
+	<aside class= "col-md-9">
+		<h1><%= @internship_recruitment.title %></h1>
+		<h2>Content: <%= @internship_recruitment.content %></h2>
+		<h2>Required Qualifications: <%= @internship_recruitment.required_qualifications %></h2>
+		<h2>Prefered Qualifications: <%= @internship_recruitment.prefered_qualifications %></h2>
+		<h2>Benefits: <%= @internship_recruitment.benefits %></h2>
+		<h2>Company: <%= @internship_recruitment.company %> </h2>
+	</aside>
+
+	<aside class= "col-md-3">
+		<h2><%= pluralize(@internship_recruitment.users.count, "Student") %> has registered</h2>
+		<% @internship_recruitment.users.each do |student| %>
+			<li><%= student.name %> </li>
+		<% end %> 
+	</aside>
+</div>
+
 
 <% if can? :update, @internship_recruitment %>
 	<%= link_to "Edit", edit_internship_recruitment_path(@internship_recruitment), class: "btn btn-primary" %>
+<% end %>
+
+<% if can? :create, InternshipRegistration %>
+	<%= link_to "Apply", new_internship_registration_path(internship_recruitment_id: @internship_recruitment), class: "btn btn-primary" %>
+
 <% end %>

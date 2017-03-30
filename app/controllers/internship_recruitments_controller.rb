@@ -1,19 +1,18 @@
 class InternshipRecruitmentsController < ApplicationController
-
   before_action :authenticate_user!
   load_and_authorize_resource
+
   def index
   	@internship_recruitments = InternshipRecruitment.paginate(page: params[:page])
   end
 
   def new
-  	@user = current_user;
-  	@internship_recruitment = @user.internship_recruitments.build
+  	@internship_recruitment = current_user.internship_recruitments.build
   end
 
   def create
-  	@user = current_user;
-  	@internship_recruitment = @user.internship_recruitments.build internship_recruitment_params
+ 
+  	@internship_recruitment = current_user.internship_recruitments.build internship_recruitment_params
   	if @internship_recruitment.save
   		flash[:success] = "Internship Recruitment created."
   		redirect_to internship_recruitments_path
@@ -42,6 +41,7 @@ class InternshipRecruitmentsController < ApplicationController
 
   private
   	def internship_recruitment_params
-  		params.require(:internship_recruitment).permit :title, :content
+  		params.require(:internship_recruitment).permit :title, :content, :required_qualifications,
+                                                     :prefered_qualifications, :benefits, :company
   	end
 end

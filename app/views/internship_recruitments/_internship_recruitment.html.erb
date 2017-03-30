@@ -1,6 +1,8 @@
 <li>
-	<%= link_to gravatar_for(internship_recruitment.user, size: 100), internship_recruitment.user %>	
-	<span class="action"> <%= link_to "Apply now", "#", class: "btn btn-primary" %> </span>
+	<%= link_to gravatar_for(internship_recruitment.user, size: 100), internship_recruitment.user %>
+	<% if can? :create, InternshipRegistration %>
+		<span class="action"> <%= link_to "Apply now", new_internship_registration_path( internship_recruitment_id: internship_recruitment), class: "btn btn-primary" %> </span>
+	<% end %>
 	<span class="title"><%= link_to internship_recruitment.title, internship_recruitment %></span>
 	<span class="content"> <%= internship_recruitment.content %> </span>
 </li>

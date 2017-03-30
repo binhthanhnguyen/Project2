@@ -14,14 +14,15 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
   has_one :curriculum_vitae
   has_many :internship_recruitments
+  has_many :internship_registrations
 
-  ROLES = %w[student mentor company_representative lecturer admin]
+  ROLES = %w[student mentor company_representative lecturer supervisor admin]
 
   def role_enum
     ROLES
   end
 
   def role?(base_role)
-    ROLES.index(base_role.to_s) <= ROLES.index(role)
+    ROLES.index(base_role.to_s) == ROLES.index(role)
   end
 end

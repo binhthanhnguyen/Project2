@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  internship_recruitment: one
+  status: MyString
+
+two:
+  user: two
+  internship_recruitment: two
+  status: MyString

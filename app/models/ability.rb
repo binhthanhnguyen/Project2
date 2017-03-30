@@ -13,13 +13,28 @@ class Ability
 
     if user.role? :student
         can :read, :all
+        cannot :read, InternshipRegistration
+        can :create, InternshipRegistration
+        can [:create, :update], CurriculumVitae
     end
     # can :access, :rails_admin
 
+
     if user.role? :admin
         can :manage, :all
+        cannot [:create, :update], InternshipRegistration
+        cannot [:create, :update], InternshipRecruitment
     end
 
+    if user.role? :company_representative
+        can :manage, InternshipRecruitment
+        cannot :create, InternshipRegistration
+    end
+
+    if user.role? :lecturer
+        can :manage, InternshipRegistration
+    end
+   
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
