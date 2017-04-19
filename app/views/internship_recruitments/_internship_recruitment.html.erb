@@ -1,8 +1,22 @@
 <li>
 	<%= link_to gravatar_for(internship_recruitment.user, size: 100), internship_recruitment.user %>
-	<% if can? :create, InternshipRegistration %>
+
+	<% if internship_recruitment.users.exists?(current_user) %>
+	        	<span class="action"> 
+	        		<label class = "<%= internship_recruitment.registration_status(current_user.id) == 'pending' ?  'label label-warning' : 'label label-success' %>">
+	        			<%= internship_recruitment.registration_status current_user.id %>
+	        		</label>
+	        	</span>
+	<% elsif can? :create, InternshipRegistration %>
 		<span class="action"> <%= link_to "Apply now", new_internship_registration_path( internship_recruitment_id: internship_recruitment), class: "btn btn-primary" %> </span>
+	<% elsif current_user.role? :company_representative or current_user.role? :supervisor %>
+		<span class="action"> 
+    		<label class = "<%= internship_recruitment.status == 'pending' ?  'label label-warning' : 'label label-success' %>">
+    			<%= internship_recruitment.status %>
+    		</label>
+    	</span>
+
 	<% end %>
 	<span class="title"><%= link_to internship_recruitment.title, internship_recruitment %></span>
-	<span class="content"> <%= internship_recruitment.content %> </span>
+	<span class="content"><%= internship_recruitment.content %> </span>
 </li>

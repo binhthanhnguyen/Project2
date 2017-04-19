@@ -5,26 +5,61 @@
 	<aside class= "col-md-9">
 		<h1><%= @internship_recruitment.title %></h1>
 		<h2>Content: <%= @internship_recruitment.content %></h2>
-		<h2>Required Qualifications: <%= @internship_recruitment.required_qualifications %></h2>
-		<h2>Prefered Qualifications: <%= @internship_recruitment.prefered_qualifications %></h2>
-		<h2>Benefits: <%= @internship_recruitment.benefits %></h2>
-		<h2>Company: <%= @internship_recruitment.company %> </h2>
+
+		<div class="panel panel-default">
+	      	<div class="panel-heading">Required Qualifications</div>
+		    <div class="panel-body"><%= @internship_recruitment.required_qualifications %></div>
+		</div>
+
+		<div class="panel panel-default">
+	      	<div class="panel-heading">Prefered Qualifications </div>
+		    <div class="panel-body"><%= @internship_recruitment.prefered_qualifications %></div>
+		</div>
+
+		<div class="panel panel-default">
+	      	<div class="panel-heading">Benefits</div>
+		    <div class="panel-body"><%= @internship_recruitment.benefits %></div>
+		</div>
+
+		<div class="panel panel-default">
+	      	<div class="panel-heading">Company</div>
+		    <div class="panel-body"><%= @internship_recruitment.company %></div>
+		</div>
 	</aside>
 
 	<aside class= "col-md-3">
-		<h2><%= pluralize(@internship_recruitment.users.count, "Student") %> has registered</h2>
+		<br>
+		<br>
+		<% if @internship_recruitment.users.exists? current_user %>
+			<% if can? :destroy, InternshipRegistration %>
+				<%= link_to "Cancel", @internship_recruitment.registration(current_user),
+					method: :delete, data: { confirm: "Are You sure, you want to cancel this intership registration?" }, class: "btn btn-danger" %>
+			<% end %>
+		<% else %>
+			<% if can? :create, InternshipRegistration %>
+				<%= link_to "Apply", new_internship_registration_path(internship_recruitment_id: @internship_recruitment), class: "btn btn-primary" %>
+
+			<% end %>
+		<% end %>
+
+		<% if can? :update, InternshipRecruitment %>
+			<% if current_user.role? :company_representative %>
+				<%= link_to "Edit", edit_internship_recruitment_path(@internship_recruitment) , class: "btn btn-primary" %>
+			<% elsif current_user.role? :supervisor %>
+				<%= link_to "Approve", internship_recruitment_path(@internship_recruitment, internship_recruitment: {status: :approved}), method: :put, class: "btn btn-primary" %>
+				<%= link_to "Decline", internship_recruitment_path(@internship_recruitment, internship_recruitment: {status: :pending}), method: :put, class: "btn btn-warning" %>
+				<h4>Make some notes</h4>
+			<% end %>
+		<% end %>
+		<hr>
+		<span class="badge">
+			<%= @internship_recruitment.users.count %>
+		</span>
+		<%= "Student".pluralize(@internship_recruitment.users.count) %> has registered 
 		<% @internship_recruitment.users.each do |student| %>
-			<li><%= student.name %> </li>
+			<li><%= student.name %></li>
 		<% end %> 
 	</aside>
 </div>
 
 
-<% if can? :update, @internship_recruitment %>
-	<%= link_to "Edit", edit_internship_recruitment_path(@internship_recruitment), class: "btn btn-primary" %>
-<% end %>
-
-<% if can? :create, InternshipRegistration %>
-	<%= link_to "Apply", new_internship_registration_path(internship_recruitment_id: @internship_recruitment), class: "btn btn-primary" %>
-
-<% end %>

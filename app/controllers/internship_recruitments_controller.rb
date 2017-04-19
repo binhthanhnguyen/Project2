@@ -3,7 +3,11 @@ class InternshipRecruitmentsController < ApplicationController
   load_and_authorize_resource
 
   def index
-  	@internship_recruitments = InternshipRecruitment.paginate(page: params[:page])
+    if current_user.role? :student
+      @internship_recruitments = InternshipRecruitment.approved.paginate(page: params[:page])
+    else
+  	   @internship_recruitments = InternshipRecruitment.paginate(page: params[:page])
+    end
   end
 
   def new
@@ -42,6 +46,7 @@ class InternshipRecruitmentsController < ApplicationController
   private
   	def internship_recruitment_params
   		params.require(:internship_recruitment).permit :title, :content, :required_qualifications,
-                                                     :prefered_qualifications, :benefits, :company
+                                                     :prefered_qualifications, :benefits, :company, :status,
+                                                     internship_registration_attributes: [:id, :user_id]
   	end
 end

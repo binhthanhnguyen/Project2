@@ -5,5 +5,17 @@ class InternshipRecruitment < ApplicationRecord
   validates :content, presence: true
   has_many :internship_registrations
   has_many :users, through: :internship_registrations
+  accepts_nested_attributes_for :internship_registrations
 
+  enum status: [:pending, :approved, :jected]
+
+  scope :approved, -> {where status: :approved}
+
+  def registration_status (user_id)
+  	InternshipRegistration.where("user_id = ? and internship_recruitment_id = ?", user_id, id).first.status
+  end
+
+  def registration(user_id)
+  	InternshipRegistration.where("user_id = ? and internship_recruitment_id = ?", user_id, id).first
+  end
 end

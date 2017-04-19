@@ -14,7 +14,7 @@ class Ability
     if user.role? :student
         can :read, :all
         cannot :read, InternshipRegistration
-        can :create, InternshipRegistration
+        can [:create, :destroy], InternshipRegistration
         can [:create, :update], CurriculumVitae
     end
     # can :access, :rails_admin
@@ -22,8 +22,9 @@ class Ability
 
     if user.role? :admin
         can :manage, :all
-        cannot [:create, :update], InternshipRegistration
+        cannot [:create], InternshipRegistration
         cannot [:create, :update], InternshipRecruitment
+        cannot [:create, :update, :destroy], CurriculumVitae
     end
 
     if user.role? :company_representative
@@ -33,6 +34,18 @@ class Ability
 
     if user.role? :lecturer
         can :manage, InternshipRegistration
+        cannot :create, InternshipRegistration
+        can :read, InternshipRecruitment
+        can :read, CurriculumVitae
+        can :read, User
+    end
+
+    if user.role? :supervisor
+        can :manage, InternshipRecruitment
+        cannot :create, InternshipRecruitment
+        can :manage, InternshipRegistration
+        cannot :create, InternshipRegistration
+
     end
    
     #

@@ -1,2 +1,36 @@
-<h1>InternshipRegistrations#index</h1>
-<p>Find me in app/views/internship_registrations/index.html.erb</p>
+<% provide :title, "Internship registrations" %>
+
+<h1>Internship Registrations </h1>
+
+<% @internship_registrations.each do |internship_recruitment, registrations| %>
+  <div class="panel panel-default">
+
+      	<div class="panel-heading"><%= link_to internship_recruitment.title, internship_recruitment %>
+      		<span class="badge"><%= internship_recruitment.users.count %></span>
+      		<span class="action">
+      			<%= link_to "Make Intenrship Decision", "#", data: { toggle: "modal", target: "#registration-modal-#{internship_recruitment.id}" } %>
+      			<%= render "layouts/modal", internship_recruitment: internship_recruitment %>
+      		</span>
+      	</div>
+	    <div class="panel-body">
+	    	<ol class="list-group">
+	
+	    	    <% registrations.each do |registration| %>
+		    	<li class="list-group-item">
+		    		<%= link_to registration.user.name, registration.user %>
+		    		<span class="action">
+		    		
+			        	<label class = "<%= registration.status == 'pending' ? 'label label-warning' : 'label label-success' %>">
+			        		<%= registration.status %>
+			        	</label>
+		    		 	<%= link_to "Approve", internship_registration_path(registration, internship_registration: {status: :approved} ), method: :put %> |
+		    		 	<%= link_to "Reject", internship_registration_path(registration, internship_registration: {status: :pending} ), method: :put %>
+		    		 </span> 
+	  			</li>
+  			<% end %>
+  			</ol>
+	    </div>
+	</div>
+<% end %>
+
+

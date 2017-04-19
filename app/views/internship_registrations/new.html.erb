@@ -4,7 +4,6 @@
 	<h2>Student: <%= current_user.name %></h2>
 	<h2>Internship Subject: <%= @internship_recruitment.title %></h2>
 	<h2>Company Representative: <%= @internship_recruitment.user.name %></h2>
-	<%= link_to "Upload CV", "#", class: "btn btn-primary" %>
 	</br>
 	</br>
 	<%= render "internship_registration_form" %>
