@@ -1,0 +1,32 @@
+<div id= <%="registration-modal-#{internship_recruitment.id}" %> class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%= internship_recruitment.title %></h4>
+      </div>
+      
+      <div class="modal-body">
+       <%= form_for internship_recruitment, url: edit_internship_recruitment_path(internship_recruitment) do |f| %>
+          <%= render "shared/error_messages", object: internship_recruitment %>
+          <p>Start Date</p>
+          <p>Due Date</p>  
+          <p>Students </p>
+          <%= f.fields_for :internship_registrations do |ff| %>
+            <%= ff.select :user_id, User.all.map{|user| [user.name, user.id]}, class: "form-control" %>
+          <% end %>
+
+      </div>
+      <div class="modal-footer">
+        <div class="action">
+          <%= f.submit "Save", class: "btn btn-primary" %>
+          </div>
+      <% end %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

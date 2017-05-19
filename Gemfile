@@ -10,9 +10,9 @@ gem 'bootstrap-sass', '3.3.6'
 
 # gem 'bcrypt',         '3.1.11'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -39,7 +39,16 @@ gem 'jbuilder', '~> 2.5'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 
+
+group :production do 
+  gem 'pg'         #gem to use in production environment
+end
+
+
 group :development, :test do
+  gem 'sqlite3', '1.3.13'
+  gem 'rails_12factor', '0.0.2'
+  gem 'puma', '~> 3.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 end
@@ -52,6 +61,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
