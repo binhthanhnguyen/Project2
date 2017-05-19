@@ -46,7 +46,6 @@ end
 
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
   gem 'rails_12factor', '0.0.2'
   gem 'puma', '~> 3.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
