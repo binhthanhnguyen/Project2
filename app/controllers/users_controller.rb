@@ -27,11 +27,9 @@ class UsersController < ApplicationController
       redirect_to @user
 
     else
-      render 'edit'
+      render :edit
     end
   end
-
-
 
   private
     def user_params

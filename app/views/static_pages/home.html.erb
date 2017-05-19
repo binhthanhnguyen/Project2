@@ -1,18 +1,123 @@
 <% provide(:title, "Home") %>
 
-<div class="center jumbotron">
-  <h1>Welcome to SIE Internship Management System</h1>
+<% if user_signed_in? and current_user.role? :student %>
 
-  <h2>
-    This is the home page for the
-    <a href="http://sie.vn/">SIE Internship Management System</a>
-  </h2>
-  <% if !user_signed_in? %>
-	  <%= link_to "Log in now!", new_user_session_path, class: "btn btn-lg btn-primary" %>
-	  
-	  <%= link_to "Log in with Google", "https://accounts.google.com/Login", class: "btn btn-lg btn-primary" %>
-    <%= link_to "Log in with Facebook", "https://www.facebook.com/login", class: "btn btn-lg btn-primary" %>
-  <% end %>
-</div>
-<%= link_to image_tag("sie-logo.png", width: 64, height: 64, alt: "SIE Logo"),
-            'http://sie.vn/' %>
+
+  <form role="form" action="" method="post" class="f1">
+      <div class="f1-steps">
+          <div class="f1-progress">
+              <div class="f1-progress-line" data-now-value="12.5" data-number-of-steps="4" style="width: <%= @completed%>%;"></div>
+          </div>
+          <div class="f1-step active">
+              <div class="f1-step-icon"><i class="fa fa-user"></i></div>
+              <p>Create Curriculum Vitae</p>
+          </div>
+          <div class="f1-step <%= !current_user.curriculum_vitae.nil? ? 'active' : '' %>">
+              <div class="f1-step-icon"><i class="fa fa-registered"></i></div>
+              <p>Registration</p>
+          </div>
+          <div class="f1-step <%= current_user.internship_registrations.any? ? 'active' : '' %>">
+              <div class="f1-step-icon"><i class="fa fa-tasks"></i></div>
+              <p>Internship</p>
+    
+          </div>
+          <div class="f1-step">
+              <div class="f1-step-icon"><i class="fa fa-pencil-square-o"></i></div>
+              <p>Evaluation</p>
+          </div>
+      </div>
+   
+      <fieldset>
+          <h4>Tell us who you are:</h4>
+          <div class="form-group">
+              <label class="sr-only" for="f1-first-name">First name</label>
+              <input type="text" name="f1-first-name" placeholder="First name..." class="f1-first-name form-control" id="f1-first-name">
+          </div>
+          <div class="form-group">
+              <label class="sr-only" for="f1-last-name">Last name</label>
+              <input type="text" name="f1-last-name" placeholder="Last name..." class="f1-last-name form-control" id="f1-last-name">
+          </div>
+          <div class="form-group">
+              <label class="sr-only" for="f1-about-yourself">About yourself</label>
+              <textarea name="f1-about-yourself" placeholder="About yourself..."
+                                   class="f1-about-yourself form-control" id="f1-about-yourself"></textarea>
+          </div>
+          <div class="f1-buttons">
+              <button type="button" class="btn btn-next">Next</button>
+          </div>
+      </fieldset>
+   
+      <fieldset>
+          <h4>Set up your account:</h4>
+          <div class="form-group">
+              <label class="sr-only" for="f1-email">Email</label>
+              <input type="text" name="f1-email" placeholder="Email..." class="f1-email form-control" id="f1-email">
+          </div>
+          <div class="form-group">
+              <label class="sr-only" for="f1-password">Password</label>
+              <input type="password" name="f1-password" placeholder="Password..." class="f1-password form-control" id="f1-password">
+          </div>
+          <div class="form-group">
+              <label class="sr-only" for="f1-repeat-password">Repeat password</label>
+              <input type="password" name="f1-repeat-password" placeholder="Repeat password..."
+                                  class="f1-repeat-password form-control" id="f1-repeat-password">
+          </div>
+          <div class="f1-buttons">
+              <button type="button" class="btn btn-previous">Previous</button>
+              <button type="button" class="btn btn-next">Next</button>
+          </div>
+      </fieldset>
+   
+      <fieldset>
+          <h4>Security question:</h4>
+          <div class="form-group">
+              <label class="sr-only" for="f1-question">Question</label>
+              <input type="text" name="f1-question" placeholder="Question..." class="f1-question form-control" id="f1-question">
+          </div>
+          <div class="form-group">
+              <label class="sr-only" for="f1-answer">Answer</label>
+              <input type="text" name="f1-answer" placeholder="Answer..." class="f1-answer form-control" id="f1-answer">
+          </div>
+          <div class="f1-buttons">
+              <button type="button" class="btn btn-previous">Previous</button>
+              <button type="button" class="btn btn-next">Next</button>
+          </div>
+      </fieldset>
+   
+      <fieldset>
+          <h4>Social media profiles:</h4>
+          <div class="form-group">
+              <label class="sr-only" for="f1-facebook">Facebook</label>
+              <input type="text" name="f1-facebook" placeholder="Facebook..." class="f1-facebook form-control" id="f1-facebook">
+          </div>
+          <div class="form-group">
+              <label class="sr-only" for="f1-twitter">Twitter</label>
+              <input type="text" name="f1-twitter" placeholder="Twitter..." class="f1-twitter form-control" id="f1-twitter">
+          </div>
+          <div class="form-group">
+              <label class="sr-only" for="f1-google-plus">Google plus</label>
+              <input type="text" name="f1-google-plus" placeholder="Google plus..." class="f1-google-plus form-control" id="f1-google-plus">
+          </div>
+          <div class="f1-buttons">
+              <button type="button" class="btn btn-previous">Previous</button>
+              <button type="submit" class="btn btn-submit">Submit</button>
+          </div>
+      </fieldset>
+   
+  </form>
+
+<% elsif %>
+  <div class="center jumbotron">
+    <h1>Welcome to SIE Internship Management System</h1>
+    <h2>
+      This is the home page for the
+      <a href="http://sie.vn/">SIE Internship Management System</a>
+    </h2>
+    <% if !user_signed_in? %>
+  	  <%= link_to "Log in now!", new_user_session_path, class: "btn btn-lg btn-primary" %>
+  	  
+  	  <%= link_to "Log in with Google", "https://accounts.google.com/Login", class: "btn btn-lg btn-primary" %>
+      <%= link_to "Log in with Facebook", "https://www.facebook.com/login", class: "btn btn-lg btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

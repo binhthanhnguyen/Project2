@@ -29,7 +29,7 @@ h1 {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 120px;
 }
 
 section {
@@ -54,15 +54,15 @@ textarea {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: #0000;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   &:hover {
-    color: #fff;
     text-decoration: none;
   }
+  padding-top: 30px;
 }
 
 /* footer */
@@ -123,6 +123,7 @@ aside {
 .gravatar {
   float: left;
   margin-right: 10px;
+  height: 100px;
 }
 
 .gravatar_edit {
@@ -184,6 +185,7 @@ input {
     
   }
   .content {
+    position: relative;
     display: block;
     margin-left: 60px;
     overflow: hidden;
@@ -207,5 +209,20 @@ input {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
+  }
+}
+
+
+ol li.list-group-item { 
+    list-style: decimal inside;
+    display: list-item;
+    .action {
+        float: right;
+    }
+}
+
+.panel-heading {
+  .action {
+    float:right;
   }
 }

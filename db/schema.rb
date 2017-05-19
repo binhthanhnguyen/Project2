@@ -31,19 +31,19 @@ ActiveRecord::Schema.define(version: 20170328080015) do
     t.text     "prefered_qualifications"
     t.text     "benefits"
     t.text     "company"
-    t.string   "status",                  default: "pending"
+    t.integer  "status",                  default: 0
     t.integer  "user_id"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["user_id"], name: "index_internship_recruitments_on_user_id"
   end
 
   create_table "internship_registrations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "internship_recruitment_id"
-    t.string   "status",                    default: "pending"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.integer  "status",                    default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["internship_recruitment_id"], name: "index_internship_registrations_on_internship_recruitment_id"
     t.index ["user_id", "internship_recruitment_id"], name: "registrations", unique: true
     t.index ["user_id"], name: "index_internship_registrations_on_user_id"

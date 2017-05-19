@@ -7,7 +7,7 @@ class CreateInternshipRecruitments < ActiveRecord::Migration[5.0]
       t.text :prefered_qualifications
       t.text :benefits
       t.text :company
-      t.string :status, default: "pending"
+      t.integer :status, default: 0
       t.references :user, foreign_key: true
 
       t.timestamps
