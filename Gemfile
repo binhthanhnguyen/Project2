@@ -39,10 +39,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 
-group :production do 
-  gem 'pg'         #gem to use in production environment
-end
-
 
 group :development, :test do
   
@@ -61,6 +57,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'sqlite3', '1.3.13'
 end
+
+
+group :production do 
+  gem 'pg'         #gem to use in production environment
+end
+
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
