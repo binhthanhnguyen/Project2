@@ -39,14 +39,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 
-
 group :production do 
   gem 'pg'         #gem to use in production environment
 end
 
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
+  
   gem 'rails_12factor', '0.0.2'
   gem 'puma', '~> 3.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,6 +59,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'sqlite3', '1.3.13'
 end
 
 
