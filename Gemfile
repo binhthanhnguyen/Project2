@@ -8,6 +8,8 @@ gem 'cancancan'
 gem 'rails_admin', '~> 1.1.1'
 gem 'bootstrap-sass', '3.3.6'
 gem "font-awesome-rails"
+gem 'omniauth'
+gem 'omniauth-google-oauth2' 
 
 # gem 'bcrypt',         '3.1.11'
 # Use sqlite3 as the database for Active Record
