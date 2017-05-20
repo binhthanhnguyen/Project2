@@ -1,1 +1,1 @@
-OmniAuth.config.full_host = Rails.env.production? ? 'http://sie-internship-management.herokuapp.com/' : 'http://localhost:3000'
+OmniAuth.config.full_host = Rails.env.production? ? 'https://sie-internship-management.herokuapp.com/' : 'http://localhost:3000'
