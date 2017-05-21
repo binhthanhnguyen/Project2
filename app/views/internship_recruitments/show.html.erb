@@ -47,7 +47,7 @@
 				<%= link_to "Edit", edit_internship_recruitment_path(@internship_recruitment) , class: "btn btn-primary" %>
 			<% elsif current_user.role? :supervisor %>
 				<%= link_to "Approve", internship_recruitment_path(@internship_recruitment, internship_recruitment: {status: :approved}), method: :put, class: "btn btn-primary" %>
-				<%= link_to "Decline", internship_recruitment_path(@internship_recruitment, internship_recruitment: {status: :pending}), method: :put, class: "btn btn-warning" %>
+				<%= link_to "Decline", internship_recruitment_path(@internship_recruitment, internship_recruitment: {status: :rejected}), method: :put, class: "btn btn-warning" %>
 				<h4>Make some notes</h4>
 			<% end %>
 		<% end %>

@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520032733) do
+ActiveRecord::Schema.define(version: 20170521044541) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "curriculum_vitaes", force: :cascade do |t|
     t.text     "objective"
@@ -21,33 +24,14 @@ ActiveRecord::Schema.define(version: 20170520032733) do
     t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["user_id"], name: "index_curriculum_vitaes_on_user_id"
+    t.index ["user_id"], name: "index_curriculum_vitaes_on_user_id", using: :btree
   end
 
-  create_table "internship_recruitments", force: :cascade do |t|
-    t.text     "title"
-    t.text     "content"
-    t.text     "required_qualifications"
-    t.text     "prefered_qualifications"
-    t.text     "benefits"
-    t.text     "company"
-    t.integer  "status",                  default: 0
-    t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["user_id"], name: "index_internship_recruitments_on_user_id"
-  end
+# Could not dump table "internship_recruitments" because of following StandardError
+#   Unknown type 'recruitment_status' for column 'status'
 
-  create_table "internship_registrations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "internship_recruitment_id"
-    t.integer  "status",                    default: 0
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.index ["internship_recruitment_id"], name: "index_internship_registrations_on_internship_recruitment_id"
-    t.index ["user_id", "internship_recruitment_id"], name: "registrations", unique: true
-    t.index ["user_id"], name: "index_internship_registrations_on_user_id"
-  end
+# Could not dump table "internship_registrations" because of following StandardError
+#   Unknown type 'status' for column 'status'
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -66,8 +50,12 @@ ActiveRecord::Schema.define(version: 20170520032733) do
     t.string   "last_sign_in_ip"
     t.string   "provider"
     t.string   "uid"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "curriculum_vitaes", "users"
+  add_foreign_key "internship_recruitments", "users"
+  add_foreign_key "internship_registrations", "internship_recruitments"
+  add_foreign_key "internship_registrations", "users"
 end

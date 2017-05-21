@@ -1,8 +1,12 @@
 <% provide :title, "Internship Recruitments" %>
 
 <h1>Internship Recruitments</h1>
-
 <div class="row">
+
+</div>
+<br>
+<div class="row">
+	<div class="col-md-9 col-md-offset-1">
 	<%= form_tag(internship_recruitments_path, :method => "get", id: "search-form") do %>
 		<div class="input-group">
 	    	<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search..." %>
@@ -11,14 +15,16 @@
 		    </span>
 	    </div>
 	<% end %>
-</div>
-
-
-<div class="nav pull-right">
+	</div>
+	<div class="nav pull-right">
 <% if can? :create, InternshipRecruitment %>
-	<%= link_to "Create Internship Recruitment", new_internship_recruitment_path, class: "btn btn-primary" %>
+	<%= link_to "Create Recruitment", new_internship_recruitment_path, class: "btn btn-primary" %>
 <% end %>
 </div>
+</div>
+
+
+
 <br>
 <br>
 <% if @internship_recruitments.any? %>

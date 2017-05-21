@@ -3,7 +3,7 @@ class CreateInternshipRegistrations < ActiveRecord::Migration[5.0]
     create_table :internship_registrations do |t|
       t.references :user, foreign_key: true
       t.references :internship_recruitment, foreign_key: true
-      t.integer :status, default: 0
+      # t.integer :status, default: 0
 
       t.timestamps
     end

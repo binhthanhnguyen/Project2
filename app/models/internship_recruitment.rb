@@ -7,7 +7,7 @@ class InternshipRecruitment < ApplicationRecord
   has_many :users, through: :internship_registrations
   accepts_nested_attributes_for :internship_registrations
 
-  enum status: [:pending, :approved, :jected]
+  enum status: { pending: 'pending', approved: 'approved', jected: 'rejected' } 
 
   scope :approved, -> {where status: :approved}
 
