@@ -14,10 +14,14 @@
           <% if current_user.role? :admin %>
             <li><%= link_to "Dashboard", rails_admin.dashboard_path %></li>
           <% end %>
-          <li><%= link_to "Internship Subject", internship_recruitments_path %></li>
-          <% if !current_user.role? :student %>
-            <li><%= link_to "Internship Registration", internship_registrations_path %></li>
+          <li><%= link_to "Internships", internship_recruitments_path %></li>
+          <% if (current_user.role? :supervisor) || (current_user.role? :lecturer) %>
+            <li><%= link_to "Registrations", internship_registrations_path %></li>
+            <li><%= link_to "Decisions", internship_assignments_path %></li>
           <% end %>
+          <% if current_user.role? :company_representative %>
+              <li><%= link_to "Assignments",  assignments_path %></li> 
+            <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>

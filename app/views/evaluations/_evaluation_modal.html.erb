@@ -1,0 +1,27 @@
+<div id= <%="evaluation-modal-#{assignment.id}" %> class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Evaluate <%= assignment.student.name %></h4>
+      </div>
+      
+      <div class="modal-body">
+      <%= form_for @evaluation do |f| %>
+        <%= render "shared/error_messages", object: @evaluation %>
+        <%= f.hidden_field :assignment_id, value: assignment.id %>
+        <%= f.fields_for :evaluation_criteria do |builder| %>
+          <%= render "evaluations/evaluation_criteria_fields", f: builder %>
+        <% end %> 
+      </div>
+       <div class="modal-footer">
+        <div class="action pull-right">
+          <%= f.submit "Save", class: "btn btn-primary" %>
+          </div>
+      <% end %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

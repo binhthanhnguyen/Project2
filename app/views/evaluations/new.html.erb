@@ -1,0 +1,11 @@
+
+<h1 class="modal-title">Evaluate <%= @assignment.student.name %></h1>
+<%= form_for [@assignment, @evaluation] do |f| %>
+  <%= render "shared/error_messages", object: @evaluation %>
+  <%= f.fields_for :evaluation_criteria do |builder| %>
+    <%= render "evaluation_criteria_fields", f: builder %>
+  <% end %> 
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    </div>
+<% end %>
+

@@ -5,9 +5,9 @@ class InternshipRecruitment < ApplicationRecord
   validates :content, presence: true
   has_many :internship_registrations
   has_many :users, through: :internship_registrations
-  accepts_nested_attributes_for :internship_registrations
+  has_many :internship_assignments
 
-  enum status: { pending: 'pending', approved: 'approved', jected: 'rejected' } 
+  enum status: { pending: 'pending', approved: 'approved', rejected: 'rejected' } 
 
   scope :approved, -> {where status: :approved}
 

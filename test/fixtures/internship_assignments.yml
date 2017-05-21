@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  internship_recruitment: one
+  student_id: 1
+  lecturer_id: 1
+  mentor_id: 1
+  start_date: 2017-05-22 01:44:31
+  end_date: 2017-05-22 01:44:31
+
+two:
+  internship_recruitment: two
+  student_id: 1
+  lecturer_id: 1
+  mentor_id: 1
+  start_date: 2017-05-22 01:44:31
+  end_date: 2017-05-22 01:44:31

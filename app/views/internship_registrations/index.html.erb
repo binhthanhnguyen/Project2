@@ -19,12 +19,11 @@
 		    	<li class="list-group-item">
 		    		<%= link_to registration.user.name, registration.user %>
 		    		<span class="action">
-		    		
-			        	<label class = "<%= registration.status == 'pending' ? 'label label-warning' : 'label label-success' %>">
+			        	<label class = "<%= registration.status == 'pending' ? 'label label-warning' : registration.status == 'approved' ? 'label label-success' : 'label label-danger' %>">
 			        		<%= registration.status %>
-			        	</label>
+			        	</label>|
 		    		 	<%= link_to "Approve", internship_registration_path(registration, internship_registration: {status: :approved} ), method: :put %> |
-		    		 	<%= link_to "Reject", internship_registration_path(registration, internship_registration: {status: :pending} ), method: :put %>
+		    		 	<%= link_to "Reject", internship_registration_path(registration, internship_registration: {status: :rejected} ), method: :put %>
 		    		 </span> 
 	  			</li>
   			<% end %>

@@ -1,0 +1,12 @@
+<p>
+ <%= f.label :student %>
+ <div class = "row">
+ 	<div class= "col-md-8">
+ 		<%= f.select :student_id,  User.student.map{|user| [user.name, user.id]}, class: "form-control" %>
+    </div>
+    <div class= "col-md-1">
+  		<%= f.check_box :_destroy %>
+  	</div>
+  <%= f.label :_destroy, "Remove Student" %>
+  </div>
+</p>

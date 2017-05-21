@@ -106,6 +106,16 @@
    
   </form>
 
+  <% current_user.assignments.each do |assigment| %>
+    Lecturer
+    <div> <%= assigment.internship_assignment.lecturer.name %></div>
+    <%= current_user.name %>
+  Internship at  <%= assigment.internship_assignment.internship_recruitment.company %> Company
+    instruct by <%= assigment.mentor %>
+  <% end %>
+
+    <%= link_to "Upload Report", "#", class: "btn btn-lg btn-primary" %>
+
 <% elsif %>
   <div class="center jumbotron">
     <h1>Welcome to SIE Internship Management System</h1>
@@ -114,10 +124,10 @@
       <a href="http://sie.vn/">SIE Internship Management System</a>
     </h2>
     <% if !user_signed_in? %>
-  	  <%= link_to "Log in now!", new_user_session_path, class: "btn btn-lg btn-primary" %>
+  	  <%= link_to "Log in now!", new_user_session_path, class: "btn btn-lg btn-primary fa fa-sign-in fa-lg" %>
   	  
-  	  <%= link_to "Log in with Google", user_google_oauth2_omniauth_authorize_path, class: "btn btn-lg btn-primary" %>
-      <%= link_to "Log in with Facebook", "https://www.facebook.com/login", class: "btn btn-lg btn-primary" %>
+  	  <%= link_to "Log in with Google", user_google_oauth2_omniauth_authorize_path, class: "btn btn-lg btn-danger fa fa-google-plus-square fa-lg" %>
+      <%= link_to "Log in with Facebook", "https://www.facebook.com/login", class: "btn btn-lg btn-primary fa fa-facebook-official fa-lg" %>
     <% end %>
   </div>
 <% end %>

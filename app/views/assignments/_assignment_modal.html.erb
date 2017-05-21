@@ -1,0 +1,29 @@
+<div id= <%="assignment-modal-#{assignment.id}" %> class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Internship Assignment for <%= assignment.student.name %></h4>
+      </div>
+      
+      <div class="modal-body">
+      <%= form_for assignment do |f| %>
+        <%= render "shared/error_messages", object: assignment %>
+        <%= f.label :start_date, "Start Date" %>
+        <%= f.date_select :start_date, start_year: Date.current.year %>
+        <%= f.label :end_date, "Due Date" %>
+        <%= f.date_select :end_date, start_year: Date.current.year %> 
+        <%= f.label :mentor %>
+        <%= f.select :mentor_id, User.mentor.map{|user| [user.name, user.id]} %>
+      </div>
+       <div class="modal-footer">
+        <div class="action pull-right">
+          <%= f.submit "Save", class: "btn btn-primary" %>
+          </div>
+      <% end %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
