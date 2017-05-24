@@ -3,6 +3,7 @@
 	<div class="col-md-6">
 		<%= f.label :criterion, f.object.criterion.title %>
 	</div>
+		<%= f.hidden_field :criterion_id, value: f.object.criterion.id %>
 	<div class="col-md-2">
 		<%= f.select :point, (0..10) %>
 	</div>

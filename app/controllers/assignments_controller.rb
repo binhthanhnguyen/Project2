@@ -1,12 +1,6 @@
 class AssignmentsController < ApplicationController
 	def index
 		@internship_recruitments = current_user.internship_recruitments
-
-
-		@evaluation = Evaluation.new
-		7.times do |n|
-			@evaluation.evaluation_criteria.build criterion_id: n+1
-		end
 		
 	end
 

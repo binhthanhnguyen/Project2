@@ -4,7 +4,7 @@ class EvaluationsController < ApplicationController
 		@assignment = Assignment.find params[:assignment_id]
 
 		@evaluation = @assignment.build_evaluation
-		7.times do |n|
+		Criterion.all.count.times do |n|
 			@evaluation.evaluation_criteria.build criterion_id: n+1
 		end
 
@@ -14,9 +14,6 @@ class EvaluationsController < ApplicationController
 		@assignment = Assignment.find params[:assignment_id]
 
 		@evaluation = @assignment.build_evaluation evaluation_params
-		7.times do |n|
-			@evaluation.evaluation_criteria.build criterion_id: n+1
-		end
 		if @evaluation.save
 			flash[:success] = "Evaluated successfully."
 			redirect_to [@assignment, @evaluation]
@@ -25,6 +22,27 @@ class EvaluationsController < ApplicationController
 			render :new
 		end
 
+	end
+
+	def edit
+		@assignment = Assignment.find params[:assignment_id]
+		@evaluation = Evaluation.find params[:id]
+
+
+
+	end
+
+	def update
+		@assignment = Assignment.find params[:assignment_id]
+		@evaluation = Evaluation.find params[:id]
+
+		if @evaluation.update_attributes evaluation_params
+			flash[:success] = "Updated evaluation successfully."
+			redirect_to [@assignment, @evaluation]
+		else
+			flash[:error] = "Cant not update evaluation."
+			render :edit
+		end
 	end
 
 

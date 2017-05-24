@@ -51,8 +51,17 @@
 					    				</td>
 					    			
 					    				<td>
+					    					<% if !assignment.evaluation.nil? %>
+					    						<%= link_to "", edit_assignment_evaluation_path(assignment, assignment.evaluation), class: "fa fa-pencil-square-o", title: "Evaluate" %> |
 
-					    					<%= link_to "", new_assignment_evaluation_path(assignment), class: "fa fa-pencil-square-o", title: "Evaluate" %> |
+
+					    					<% else %>
+					    							<%= link_to "", new_assignment_evaluation_path(assignment), class: "fa fa-pencil-square-o", title: "Evaluate" %> |
+
+					    					<% end %> 
+
+
+					    				
 					    					<%= link_to "", "#", data: { toggle: "modal", target: "#assignment-modal-#{assignment.id}" }, class: "fa fa-pencil", title: "Edit" %>
 					    					<%= render "assignment_modal", assignment: assignment %>
 
