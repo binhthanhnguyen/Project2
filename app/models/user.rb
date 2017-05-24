@@ -16,7 +16,21 @@ class User < ApplicationRecord
   has_many :internship_recruitments
   has_many :internship_registrations
 
+  validates :internship_registrations, length: {maximum: 3}
+
+
+
+  has_many :internship_assignments, class_name: "InternshipAssignment", foreign_key: "lecturer_id"
+  
+  has_many :mentored_internships, class_name: "Assignment", foreign_key: "mentor_id"
+
+  has_many :assignments, class_name: "Assignment", foreign_key: "student_id"
+
   ROLES = %w[student mentor company_representative lecturer supervisor admin]
+
+  scope :student, -> {where role: :student}
+  scope :lecturer, -> {where role: :lecturer}
+  scope :mentor, -> {where role: :mentor}
 
   def role_enum
     ROLES

@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Evaluation for <%= @assignment.student.name %> </div>
+  <div class="panel-body">
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+		<thead>
+			<th>Evaluation Criteria</th>
+			<th>Point</th>
+			<th>Comment</th>
+		</thead>
+
+		<tbody>
+			<% @evaluation.evaluation_criteria.each do |evaluation_criteria| %>
+			
+			<tr>
+			
+				<% if !evaluation_criteria.criterion.nil? %>
+				<td>
+					<%= evaluation_criteria.criterion.title %>
+				</td>
+				<td class="col-md-2">
+					<%= evaluation_criteria.point %>
+				</td>
+
+				<td class="col-md-4">
+					<%= evaluation_criteria.comment %>
+				</td>
+
+				<% end %>
+			</tr>
+			<% end %>
+		</tbody>
+
+	</table>
+</div>
+
+
+
+
+
+

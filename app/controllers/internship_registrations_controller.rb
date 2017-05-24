@@ -4,6 +4,10 @@ class InternshipRegistrationsController < ApplicationController
   
   def index
     @internship_registrations = InternshipRegistration.all.group_by(&:internship_recruitment)
+
+    @internship_assignment = InternshipAssignment.new
+    @internship_assignment.assignments.build
+
   end
 
   def new
