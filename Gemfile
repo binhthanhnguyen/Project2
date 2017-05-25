@@ -11,6 +11,9 @@ gem "font-awesome-rails"
 gem 'omniauth'
 gem 'omniauth-google-oauth2' 
 
+gem 'carrierwave'
+
+
 # gem 'bcrypt',         '3.1.11'
 # Use sqlite3 as the database for Active Record
 

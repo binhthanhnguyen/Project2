@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524085936) do
+ActiveRecord::Schema.define(version: 20170525082601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 20170524085936) do
 # Could not dump table "internship_registrations" because of following StandardError
 #   Unknown type 'status' for column 'status'
 
+  create_table "reports", force: :cascade do |t|
+    t.string   "name"
+    t.string   "content"
+    t.string   "attachment"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reports_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                          null: false
@@ -111,4 +121,5 @@ ActiveRecord::Schema.define(version: 20170524085936) do
   add_foreign_key "internship_recruitments", "users"
   add_foreign_key "internship_registrations", "internship_recruitments"
   add_foreign_key "internship_registrations", "users"
+  add_foreign_key "reports", "users"
 end

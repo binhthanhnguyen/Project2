@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   validates :internship_registrations, length: {maximum: 3}
 
-
+  has_many :reports
 
   has_many :internship_assignments, class_name: "InternshipAssignment", foreign_key: "lecturer_id"
   
