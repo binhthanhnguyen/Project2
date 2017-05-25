@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # get 'curriculum_vitaes/edit'
 
   # get 'sessions/new'
-
+  resources :reports
 
   # get 'static_pages/home'
 
